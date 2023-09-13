@@ -104,12 +104,7 @@ function changePackage(){
         nextBtn.innerText = 'Next Step';
         nextBtn.style.backgroundColor = '';
 
-        html += `
-                <div class="add-on-sum-info">
-                    <p class="add-sum-name"></p>
-                    <p class="add-sum-price"></p>
-                </div>
-                `;
+        html = '';
         
         document.querySelector('.add-summary').innerHTML = html;
 };
@@ -211,8 +206,8 @@ function pickedPlan(event){
 }
 
 function addonTotal(checkbox,index) {
+    html = '';
     if(checkbox.checked){
-        html = '';
         addOnAmount = 0;
         addOnAmount += addOnArr[index][currentperiod];
 
@@ -222,15 +217,11 @@ function addonTotal(checkbox,index) {
                     <p class="add-sum-price">+$${addOnArr[index][currentperiod]}/${currentperiod === 'yearly' ? 'yr' : 'mo'}</p>
                 </div>
                 `;
-        
-        document.querySelector('.add-summary').innerHTML = html;
-
     } else if (!checkbox.checked) {
-        html = '';
-        document.querySelector('.add-summary').innerHTML = html;
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
     };
+    document.querySelector('.add-summary').innerHTML = html;
 
     total += addOnAmount;
 
