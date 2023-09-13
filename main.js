@@ -103,10 +103,6 @@ function changePackage(){
 
         nextBtn.innerText = 'Next Step';
         nextBtn.style.backgroundColor = '';
-
-        html = '';
-        
-        document.querySelector('.add-summary').innerHTML = html;
 };
 
 const packageArr = [
@@ -210,24 +206,10 @@ function addonTotal(checkbox,index) {
         addOnAmount = 0;
         addOnAmount += addOnArr[index][currentperiod];
 
-        html += `
-                <div class="add-on-sum-info">
-                    <p class="add-sum-name">${addOnArr[index].name}</p>
-                    <p class="add-sum-price">+$${addOnArr[index][currentperiod]}/${currentperiod === 'yearly' ? 'yr' : 'mo'}</p>
-                </div>
-                `;
     } else if (!checkbox.checked) {
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
-
-        html += `
-                <div class="add-on-sum-info">
-                    <p class="add-sum-name"></p>
-                    <p class="add-sum-price"></p>
-                </div>
-                `;
     };
-    document.querySelector('.add-summary').innerHTML = html;
 
     total += addOnAmount;
 
@@ -243,7 +225,7 @@ function showTotal() {
 
 nextBtn.addEventListener('click', () => {
     validateForm();
-
+    showSummaryAddOn()
     const hasErrors = errorMessage.some((errorMessage) => errorMessage.style.opacity === '1');
 
     if (!hasErrors) {
@@ -263,8 +245,30 @@ window.addEventListener('click', (e) => {
     pickedPlan(e);
 });
 
-checkbox.forEach( (checkbox, index) => {
-    checkbox.addEventListener('change', () => {
-        addonTotal(checkbox,index);
+checkbox.forEach((checkboxElement, index) => {
+    checkboxElement.addEventListener('change', () => {
+        addonTotal(checkboxElement, index);
+        showAdd(checkboxElement, index);
     });
 });
+
+function showAdd(checkbox, index) {
+    if (checkbox.checked) {
+        let info = `
+            <div class="add-on-sum-info">
+                <p class="add-sum-name">${addOnArr[index].name}</p>
+                <p class="add-sum-price">+$${addOnArr[index][currentperiod]}/${currentperiod === 'yearly' ? 'yr' : 'mo'}</p>
+            </div>
+        `;
+        html += info;
+    } else {
+        const nameToRemove = addOnArr[index].name;
+        const regex = new RegExp(`<div class="add-on-sum-info">\\s*<p class="add-sum-name">${nameToRemove}<\\/p>[\\s\\S]*?<\\/div>`);
+        html = html.replace(regex, '');
+    }
+}
+
+
+function showSummaryAddOn() {
+    document.querySelector('.add-summary').innerHTML = html;
+}
