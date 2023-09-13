@@ -103,6 +103,15 @@ function changePackage(){
 
         nextBtn.innerText = 'Next Step';
         nextBtn.style.backgroundColor = '';
+
+        html += `
+                <div class="add-on-sum-info">
+                    <p class="add-sum-name"></p>
+                    <p class="add-sum-price"></p>
+                </div>
+                `;
+        
+        document.querySelector('.add-summary').innerHTML = html;
 };
 
 const packageArr = [
@@ -218,6 +227,15 @@ function addonTotal(checkbox,index) {
     } else if (!checkbox.checked) {
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
+
+        html += `
+                <div class="add-on-sum-info">
+                    <p class="add-sum-name"></p>
+                    <p class="add-sum-price"></p>
+                </div>
+                `;
+        
+        document.querySelector('.add-summary').innerHTML = html;
     };
 
     total += addOnAmount;
