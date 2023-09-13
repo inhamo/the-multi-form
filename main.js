@@ -227,6 +227,7 @@ function addonTotal(checkbox,index) {
 
     } else if (!checkbox.checked) {
         html = '';
+        document.querySelector('.add-summary').innerHTML = html;
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
     };
