@@ -211,8 +211,8 @@ function pickedPlan(event){
 }
 
 function addonTotal(checkbox,index) {
-    html = '';
     if(checkbox.checked){
+        html = '';
         addOnAmount = 0;
         addOnAmount += addOnArr[index][currentperiod];
 
@@ -226,6 +226,7 @@ function addonTotal(checkbox,index) {
         document.querySelector('.add-summary').innerHTML = html;
 
     } else if (!checkbox.checked) {
+        html = '';
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
     };
