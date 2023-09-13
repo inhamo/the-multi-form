@@ -217,9 +217,15 @@ function addonTotal(checkbox,index) {
                 </div>
                 `;
     } else if (!checkbox.checked) {
-        html = '';
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
+
+        html += `
+                <div class="add-on-sum-info">
+                    <p class="add-sum-name"></p>
+                    <p class="add-sum-price"></p>
+                </div>
+                `;
     };
     document.querySelector('.add-summary').innerHTML = html;
 
