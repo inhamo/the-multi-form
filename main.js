@@ -206,8 +206,8 @@ function pickedPlan(event){
 }
 
 function addonTotal(checkbox,index) {
-    html = '';
     if(checkbox.checked){
+        html = '';
         addOnAmount = 0;
         addOnAmount += addOnArr[index][currentperiod];
 
