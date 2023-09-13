@@ -228,12 +228,7 @@ function addonTotal(checkbox,index) {
         addOnAmount = 0;
         addOnAmount -= addOnArr[index][currentperiod];
 
-        html += `
-                <div class="add-on-sum-info">
-                    <p class="add-sum-name"></p>
-                    <p class="add-sum-price"></p>
-                </div>
-                `;
+        html='';
         
         document.querySelector('.add-summary').innerHTML = html;
     };
